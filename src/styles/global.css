@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@source "../";
 
 /*
  * Tailwind CSS 4 - Dynamic Theme System

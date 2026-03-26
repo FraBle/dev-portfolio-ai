@@ -1,15 +1,20 @@
 ---
-import { basics } from "@cv";
-import Vengeance from "@/layouts/Vengeance.astro";
-import "@/styles/global.css";
+import type { PortfolioConfig } from "../types";
+import "../styles/global.css";
 
 interface Props {
 	title: string;
+	config: PortfolioConfig;
+	description?: string;
+	noindex?: boolean;
 }
 
-const { title } = Astro.props;
+const { title, config, description, noindex } = Astro.props;
 
-const { image, summary, url, theme } = basics;
+const desc = description || config.description;
+const theme = config.theme || "default";
+const siteUrl = config.site || "";
+const ogImage = config.openGraph?.image ? new URL(config.openGraph.image, siteUrl).href : "";
 ---
 
 <!doctype html>
@@ -17,27 +22,35 @@ const { image, summary, url, theme } = basics;
 	<head>
 		<meta charset="UTF-8" />
 		<title>{title}</title>
-		<meta name="description" content={summary} />
+		<meta name="description" content={desc} />
 		<meta name="viewport" content="width=device-width" />
+		{noindex && <meta name="robots" content="noindex, nofollow" />}
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="preload" as="image" href={image} />
+		{config.openGraph?.image && <link rel="preload" as="image" href={config.openGraph.image} />}
 
-		<meta property="og:url" content={url} />
-		<meta property="og:type" content="website" />
+		<meta property="og:url" content={siteUrl} />
+		<meta property="og:type" content={config.openGraph?.type || "website"} />
 		<meta property="og:title" content={title} />
-		<meta property="og:description" content={summary} />
-		<meta property="og:image" content="" />
+		<meta property="og:description" content={desc} />
+		<meta property="og:image" content={ogImage} />
+		{config.openGraph?.locale && <meta property="og:locale" content={config.openGraph.locale} />}
+		{config.openGraph?.siteName && <meta property="og:site_name" content={config.openGraph.siteName} />}
 
-		<meta name="twitter:card" content="summary_large_image" />
-		<meta property="twitter:domain" content={url.split("//")[1] ?? ""} />
-		<meta property="twitter:url" content={url} />
+		<meta name="twitter:card" content={config.twitter?.card || "summary_large_image"} />
+		{siteUrl && <meta property="twitter:domain" content={siteUrl.split("//")[1] ?? ""} />}
+		<meta property="twitter:url" content={siteUrl} />
 		<meta name="twitter:title" content={title} />
-		<meta name="twitter:description" content={summary} />
-		<meta name="twitter:image" content="" />
+		<meta name="twitter:description" content={desc} />
+		<meta name="twitter:image" content={ogImage} />
+		{config.twitter?.creator && <meta name="twitter:creator" content={config.twitter.creator} />}
 
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Itim" />
 
-		<Vengeance />
+		{config.socialProfiles?.map((url) => (
+			<link rel="me" href={url} />
+		))}
+
+		<!-- I'm Vengeance -->
 	</head>
 	<body data-theme={theme} class="relative bg-skin-fill">
 		<div class="absolute top-0 -z-10 h-full w-full print:hidden">
@@ -99,11 +112,6 @@ const { image, summary, url, theme } = basics;
 				display: none !important;
 			}
 
-			.dev * {
-				border: 1px solid rgb(239 68 68 / 0.5);
-				background-color: rgb(239 68 68 / 0.05);
-			}
-
 			#hotkeypad [data-backdrop] {
 				background-color: rgb(39 39 42) !important;
 				opacity: 0.8 !important;
@@ -134,7 +142,6 @@ const { image, summary, url, theme } = basics;
 
 			Alpine.plugin(collapse);
 
-			// Theme selector component
 			Alpine.data("themeSelector", () => ({
 				open: false,
 				currentTheme: "system",
