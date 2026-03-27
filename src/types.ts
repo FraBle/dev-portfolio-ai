@@ -56,6 +56,7 @@ export interface HeroProps {
   phone?: string;
   location?: LocationInfo;
   profiles?: ProfileItem[];
+  resumeUrl?: string;
 }
 
 export interface ExperienceItem {

@@ -12,7 +12,7 @@ interface Props extends HeroProps {
 	class?: string;
 }
 
-const { name, label, image, location, profiles = [], phone, email } = Astro.props;
+const { name, label, image, location, profiles = [], phone, email, resumeUrl } = Astro.props;
 const city = location?.city;
 const region = location?.region;
 
@@ -87,6 +87,16 @@ const printInfo = [email, phone, linkedUrl].filter(Boolean).join(" • ");
 						);
 					})
 				}
+				{resumeUrl && (
+					<a href={resumeUrl} target="_blank" rel="noopener noreferrer" title="Download Resume" class="no-print inline-flex h-8 items-center gap-1.5 rounded-md bg-skin-button-accent px-3 text-xs font-medium text-skin-inverted transition-colors hover:opacity-90">
+						<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+							<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+							<polyline points="7 10 12 15 17 10" />
+							<line x1="12" x2="12" y1="15" y2="3" />
+						</svg>
+						Resume
+					</a>
+				)}
 				<div class="no-print footer-button max-sm:hidden group flex h-8 w-9 cursor-pointer items-center justify-center rounded-md text-skin-hue hover:bg-skin-button-accent hover:text-skin-inverted [&>span]:hover:text-skin-inverted">
 					<svg xmlns="http://www.w3.org/2000/svg" class="icon h-6 w-6 icon-tabler icon-tabler-command" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
 						<path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
