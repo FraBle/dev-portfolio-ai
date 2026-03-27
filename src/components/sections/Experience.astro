@@ -1,22 +1,7 @@
 ---
 import type { ExperienceItem } from "../../types";
 import Section from "../Section.astro";
-
-import HTML from "../../icons/html.astro";
-import CSS from "../../icons/css.astro";
-import JavaScript from "../../icons/javascript.astro";
-import TypeScript from "../../icons/type.astro";
-import ReactIcon from "../../icons/react.astro";
-import Node from "../../icons/node.astro";
-import MySQL from "../../icons/sql.astro";
-import Git from "../../icons/git.astro";
-import GitHub from "../../icons/GitHub.astro";
-import Tailwind from "../../icons/tailwind.astro";
-import Next from "../../icons/next.astro";
-import Swift from "../../icons/swift.astro";
-import SwiftUI from "../../icons/swiftui.astro";
-import Kotlin from "../../icons/kotlin.astro";
-import Flutter from "../../icons/flutter.astro";
+import { SKILL_ICONS } from "../../skill-icons";
 
 interface Props {
   items: ExperienceItem[];
@@ -26,25 +11,7 @@ interface Props {
 
 const { items, className, skillIcons = {} } = Astro.props;
 
-const DEFAULT_SKILL_ICONS: Record<string, any> = {
-  HTML,
-  CSS,
-  JavaScript,
-  TypeScript,
-  React: ReactIcon,
-  Node,
-  MySQL,
-  Git,
-  GitHub,
-  Next,
-  Tailwind,
-  Swift,
-  SwiftUI,
-  Kotlin,
-  Flutter,
-};
-
-const SKILLS_ICONS: Record<string, any> = { ...DEFAULT_SKILL_ICONS, ...skillIcons };
+const SKILLS_ICONS: Record<string, any> = { ...SKILL_ICONS, ...skillIcons };
 
 function parseYear(dateStr: string): number {
   return parseInt(dateStr.split("-")[0], 10);
