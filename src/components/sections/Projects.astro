@@ -1,6 +1,6 @@
 ---
 import type { ProjectItem } from "../../types";
-import Git from "../../icons/git.astro";
+import { Github } from "simple-icons-astro";
 import Arrow from "../../icons/Arrow.astro";
 import Section from "../Section.astro";
 
@@ -39,7 +39,7 @@ const { items, className } = Astro.props;
 
 							{github && (
 								<a href={github} title="View repository on GitHub" target="_blank" rel="noopener" class="opacity-75 transition-opacity duration-100 hover:opacity-100">
-									<Git />
+									<Github size={16} />
 								</a>
 							)}
 						</div>
