@@ -78,7 +78,7 @@ const printInfo = [email, phone, linkedUrl].filter(Boolean).join(" • ");
 
 						return Icon ? (
 							<a href={url} title={`Visit ${name} profile on ${network}`} target="_blank" rel="noopener noreferrer">
-								<Icon />
+								<Icon size={16} />
 							</a>
 						) : (
 							<a href={url} title={`Visit ${name} profile on ${network}`} target="_blank" rel="noopener noreferrer" class="text-xs font-medium">

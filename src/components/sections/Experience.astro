@@ -121,7 +121,7 @@ function parseYear(dateStr: string): number {
                     const Icon = SKILLS_ICONS[iconName];
                     return (
                       <li class="bg-skin-button-accent/20 border-skin-hue/20 text-skin-hue print:p-0 print:bg-transparent print:text-zinc-800 flex gap-1 items-center border-solid print:border-none border rounded-md px-2 py-0.5 text-xs">
-                        {Icon && <Icon />} <span>{skill}</span>
+                        {Icon && <Icon size={16} />} <span>{skill}</span>
                       </li>
                     );
                   })}
