@@ -16,7 +16,6 @@ An installable Astro theme package for building print-friendly portfolio/CV site
 - **Props-based API** - Feed data via Astro props instead of hardcoded JSON
 - **SSR compatible** - Works with Astro's server-side rendering and Cloudflare Workers
 - **3,000+ skill icons** - Auto-resolved via [simple-icons-astro](https://github.com/dzeiocom/simple-icons-astro)
-- **Resume download button** - Optional `resumeUrl` prop on Hero
 
 ## Stack
 
@@ -110,7 +109,6 @@ import {
         label="Your Title"
         image="/avatar.jpg"
         email="you@example.com"
-        resumeUrl="/resume.pdf"
         profiles={[{ network: "GitHub", username: "you", url: "https://github.com/you" }]}
       />
       <About summary="Your bio here." />
@@ -146,7 +144,7 @@ import { Section } from "dev-portfolio-ai";
 | Component | Description |
 |-----------|-------------|
 | `BaseLayout` | HTML shell with theme, SEO meta tags, Alpine.js init |
-| `Hero` | Name, title, avatar, location, social links, email copy, optional resume button |
+| `Hero` | Name, title, avatar, location, social links, email copy |
 | `About` | Summary/bio section |
 | `Experience` | Work history timeline with expandable Summary, Responsibilities, Achievements, and Highlights |
 | `Education` | Education entries with year ranges + optional certificates |
@@ -224,7 +222,6 @@ This fork restructures the original [Smilesharks/dev-portfolio](https://github.c
 - Brand icons replaced with [simple-icons-astro](https://github.com/dzeiocom/simple-icons-astro) (3,000+ icons)
 - CSS base resets moved to `@layer base` for proper Tailwind utility override
 - `KeyboardManager` accepts `extraCommands` prop for consumer-defined palette entries
-- `Hero` accepts optional `resumeUrl` prop for a download button
 - Hotkeys use lowercase to work around hotkeypad case-sensitivity bug in click activation
 
 ## Credits
