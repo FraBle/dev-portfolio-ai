@@ -20,6 +20,9 @@ export { default as MailIcon } from "./icons/Mail.astro";
 export { default as PhoneIcon } from "./icons/Phone.astro";
 export { default as WorldMapIcon } from "./icons/WorldMap.astro";
 
+// Brand icons removed from simple-icons (trademark restrictions)
+export { default as LinkedInIcon } from "./icons/LinkedIn.astro";
+
 // Skill icon mapping (brand icons via simple-icons-astro)
 export { SKILL_ICONS } from "./skill-icons";
 

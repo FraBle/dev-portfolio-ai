@@ -4,6 +4,10 @@
  * Consumers can extend this via the skillIcons prop.
  *
  * Uses direct imports (simple-icons-astro/Name) for fast builds.
+ *
+ * Note: Some major brands (LinkedIn, AWS, Slack, Java, C#, VS Code, Playwright)
+ * were removed from simple-icons due to trademark restrictions.
+ * See: https://github.com/simple-icons/simple-icons/issues/12378
  */
 import Html5 from "simple-icons-astro/Html5";
 import CssIcon from "simple-icons-astro/Css";
@@ -29,14 +33,13 @@ import Docker from "simple-icons-astro/Docker";
 import Postgresql from "simple-icons-astro/Postgresql";
 import Redis from "simple-icons-astro/Redis";
 import Graphql from "simple-icons-astro/Graphql";
-import Amazonwebservices from "simple-icons-astro/Amazonwebservices";
 import Googlecloud from "simple-icons-astro/Googlecloud";
 import Fastapi from "simple-icons-astro/Fastapi";
 import Express from "simple-icons-astro/Express";
 import Ansible from "simple-icons-astro/Ansible";
 import Pnpm from "simple-icons-astro/Pnpm";
 import Githubactions from "simple-icons-astro/Githubactions";
-import Argocd from "simple-icons-astro/Argocd";
+import Argo from "simple-icons-astro/Argo";
 import Circleci from "simple-icons-astro/Circleci";
 import Apachekafka from "simple-icons-astro/Apachekafka";
 import Rabbitmq from "simple-icons-astro/Rabbitmq";
@@ -57,17 +60,13 @@ import Jira from "simple-icons-astro/Jira";
 import Trello from "simple-icons-astro/Trello";
 import Notion from "simple-icons-astro/Notion";
 import Confluence from "simple-icons-astro/Confluence";
-import Slack from "simple-icons-astro/Slack";
-import Zoom from "simple-icons-astro/Zoom";
-import Linkedin from "simple-icons-astro/Linkedin";
 import Angular from "simple-icons-astro/Angular";
 import Vuedotjs from "simple-icons-astro/Vuedotjs";
 import Svelte from "simple-icons-astro/Svelte";
 import Astro from "simple-icons-astro/Astro";
 import Rust from "simple-icons-astro/Rust";
 import Cplusplus from "simple-icons-astro/Cplusplus";
-import Csharp from "simple-icons-astro/Csharp";
-import Java from "simple-icons-astro/Java";
+import Openjdk from "simple-icons-astro/Openjdk";
 import Php from "simple-icons-astro/Php";
 import Ruby from "simple-icons-astro/Ruby";
 import Mongodb from "simple-icons-astro/Mongodb";
@@ -83,16 +82,16 @@ import Webpack from "simple-icons-astro/Webpack";
 import Vite from "simple-icons-astro/Vite";
 import Jest from "simple-icons-astro/Jest";
 import Vitest from "simple-icons-astro/Vitest";
-import Playwright from "simple-icons-astro/Playwright";
 import Cypress from "simple-icons-astro/Cypress";
 import Npm from "simple-icons-astro/Npm";
 import Yarn from "simple-icons-astro/Yarn";
 import Bun from "simple-icons-astro/Bun";
 import Linux from "simple-icons-astro/Linux";
 import Gnubash from "simple-icons-astro/Gnubash";
-import Visualstudiocode from "simple-icons-astro/Visualstudiocode";
 import Neovim from "simple-icons-astro/Neovim";
 import Githubcopilot from "simple-icons-astro/Githubcopilot";
+import Dotnet from "simple-icons-astro/Dotnet";
+import Zoom from "simple-icons-astro/Zoom";
 
 export const SKILL_ICONS: Record<string, any> = {
   // Web fundamentals
@@ -127,13 +126,13 @@ export const SKILL_ICONS: Record<string, any> = {
   Golang: Go,
   Rust: Rust,
   "C++": Cplusplus,
-  "C#": Csharp,
-  Java: Java,
+  Java: Openjdk,
   PHP: Php,
   Ruby: Ruby,
   Swift: Swift,
   Kotlin: Kotlin,
   Flutter: Flutter,
+  ".NET": Dotnet,
 
   // Databases
   MySQL: Mysql,
@@ -148,7 +147,6 @@ export const SKILL_ICONS: Record<string, any> = {
   Docker: Docker,
   Terraform: Terraform,
   Ansible: Ansible,
-  AWS: Amazonwebservices,
   GCP: Googlecloud,
   "Google Cloud": Googlecloud,
   Cloudflare: Cloudflare,
@@ -160,7 +158,7 @@ export const SKILL_ICONS: Record<string, any> = {
 
   // CI/CD
   "GitHub Actions": Githubactions,
-  ArgoCD: Argocd,
+  ArgoCD: Argo,
   CircleCI: Circleci,
 
   // Version control
@@ -212,7 +210,6 @@ export const SKILL_ICONS: Record<string, any> = {
   // Testing
   Jest: Jest,
   Vitest: Vitest,
-  Playwright: Playwright,
   Cypress: Cypress,
 
   // Project management
@@ -222,12 +219,9 @@ export const SKILL_ICONS: Record<string, any> = {
   Confluence: Confluence,
 
   // Communication
-  Slack: Slack,
   Zoom: Zoom,
-  LinkedIn: Linkedin,
 
   // Editors
-  "VS Code": Visualstudiocode,
   Neovim: Neovim,
   "GitHub Copilot": Githubcopilot,
 
