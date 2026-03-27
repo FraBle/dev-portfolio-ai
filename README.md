@@ -10,11 +10,13 @@ An installable Astro theme package for building print-friendly portfolio/CV site
 - **Print-friendly** - Optimised layout for PDF export and printing
 - **Dark/Light mode** - System preference detection with manual override
 - **5 Colour themes** - Default, blue, red, green, and cyber themes
-- **Keyboard shortcuts** - Command palette with `Cmd/Ctrl + K`
+- **Keyboard shortcuts** - Command palette with `Cmd/Ctrl + K` (extendable with custom commands)
 - **Responsive design** - Mobile-first approach with Tailwind CSS 4
 - **Composable sections** - Use individual components or the full layout
 - **Props-based API** - Feed data via Astro props instead of hardcoded JSON
 - **SSR compatible** - Works with Astro's server-side rendering and Cloudflare Workers
+- **3,000+ skill icons** - Auto-resolved via [simple-icons-astro](https://github.com/dzeiocom/simple-icons-astro)
+- **Resume download button** - Optional `resumeUrl` prop on Hero
 
 ## Stack
 
@@ -23,6 +25,7 @@ An installable Astro theme package for building print-friendly portfolio/CV site
 - [**Alpine.js**](https://alpinejs.dev/) - Lightweight JavaScript framework for composing behaviour
 - [**TypeScript**](https://www.typescriptlang.org/) - JavaScript with type syntax
 - [**HotKeyPad**](https://github.com/nicosommi/hotkeypad) - Command palette with keyboard shortcuts
+- [**simple-icons-astro**](https://github.com/dzeiocom/simple-icons-astro) - 3,000+ brand SVG icons as Astro components
 
 ## Installation
 
@@ -41,7 +44,7 @@ npm install github:FraBle/dev-portfolio-ai
 You also need these in your project:
 
 ```bash
-bun add tailwindcss @tailwindcss/vite alpinejs @alpinejs/collapse
+bun add tailwindcss @tailwindcss/vite alpinejs @alpinejs/collapse simple-icons-astro
 # Optional: command palette
 bun add hotkeypad
 ```
@@ -100,26 +103,27 @@ import {
 ---
 
 <BaseLayout title="Portfolio" config={config}>
-  <main class="relative grid max-w-7xl gap-12 p-8 md:grid-cols-6 md:p-16">
-    <div class="space-y-6 md:col-span-2">
+  <main class="relative grid max-w-7xl gap-12 px-6 py-16 md:grid-cols-6 md:p-16">
+    <div class="min-w-0 space-y-6 md:col-span-2">
       <Hero
         name="Your Name"
         label="Your Title"
         image="/avatar.jpg"
         email="you@example.com"
+        resumeUrl="/resume.pdf"
         profiles={[{ network: "GitHub", username: "you", url: "https://github.com/you" }]}
       />
       <About summary="Your bio here." />
       <ThemeSwitch />
     </div>
-    <div class="space-y-12 md:col-span-4">
+    <div class="min-w-0 space-y-12 md:col-span-4">
       <Experience items={experienceData} />
       <Projects items={projectData} />
       <Skills items={skillData} />
       <Education items={educationData} />
     </div>
   </main>
-  <KeyboardManager profiles={profiles} />
+  <KeyboardManager profiles={profiles} extraCommands={extraCommands} />
 </BaseLayout>
 ```
 
@@ -142,17 +146,31 @@ import { Section } from "dev-portfolio-ai";
 | Component | Description |
 |-----------|-------------|
 | `BaseLayout` | HTML shell with theme, SEO meta tags, Alpine.js init |
-| `Hero` | Name, title, avatar, location, social links, email copy |
+| `Hero` | Name, title, avatar, location, social links, email copy, optional resume button |
 | `About` | Summary/bio section |
-| `Experience` | Work history timeline with expandable details |
-| `Education` | Education entries + optional certificates |
+| `Experience` | Work history timeline with expandable Summary, Responsibilities, Achievements, and Highlights |
+| `Education` | Education entries with year ranges + optional certificates |
 | `Projects` | Project cards grid with GitHub links |
-| `Skills` | Skill pills with optional icons |
+| `Skills` | Skill pills with auto-resolved icons (100+ technologies mapped) |
 | `Section` | Generic section wrapper with title |
 | `ThemeSwitch` | Light/dark/system theme selector |
-| `KeyboardManager` | Cmd+K command palette |
+| `KeyboardManager` | Cmd+K command palette (accepts `extraCommands` prop) |
 
-All 24 SVG icon components are also exported (e.g., `GitHubIcon`, `LinkedInIcon`, `ReactIcon`).
+### Skill icon mapping
+
+The `SKILL_ICONS` mapping auto-resolves 100+ technology names to [simple-icons-astro](https://github.com/dzeiocom/simple-icons-astro) components. Covers: languages (Python, Go, Rust, TypeScript, ...), frameworks (React, Next.js, FastAPI, ...), cloud (Kubernetes, Docker, Terraform, ...), CI/CD (GitHub Actions, ArgoCD, ...), databases (PostgreSQL, Redis, MongoDB, ...), observability (Datadog, Grafana, Sentry, ...), and more.
+
+Consumers can extend or override via the `skillIcons` prop on `Experience` and `Skills`.
+
+### UI icons
+
+Four non-brand UI icons are exported for custom use:
+
+- `ArrowIcon` — external link arrow
+- `MailIcon` — email icon
+- `PhoneIcon` — phone icon
+- `WorldMapIcon` — location globe icon
+- `LinkedInIcon` — LinkedIn logo (removed from simple-icons for trademark reasons)
 
 ## TypeScript types
 
@@ -203,6 +221,11 @@ This fork restructures the original [Smilesharks/dev-portfolio](https://github.c
 - Peer dependencies instead of bundled dependencies (Astro 6, Tailwind CSS 4, Alpine.js)
 - Tailwind CSS `@source` directive for automatic content scanning from `node_modules`
 - Standalone site files removed (pages, cv.json, astro config)
+- Brand icons replaced with [simple-icons-astro](https://github.com/dzeiocom/simple-icons-astro) (3,000+ icons)
+- CSS base resets moved to `@layer base` for proper Tailwind utility override
+- `KeyboardManager` accepts `extraCommands` prop for consumer-defined palette entries
+- `Hero` accepts optional `resumeUrl` prop for a download button
+- Hotkeys use lowercase to work around hotkeypad case-sensitivity bug in click activation
 
 ## Credits
 
