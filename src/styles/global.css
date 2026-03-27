@@ -1,6 +1,85 @@
 @import "tailwindcss";
 @source "../";
 
+/* Base resets — in @layer base so Tailwind utilities (list-disc, etc.) can override */
+@layer base {
+  body,
+  figure {
+    margin: 0;
+    padding: 0;
+  }
+
+  a {
+    text-decoration: none;
+  }
+
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    color: var(--color-text-base);
+    margin: 0;
+    font-family:
+      system-ui,
+      -apple-system,
+      BlinkMacSystemFont,
+      "Segoe UI",
+      Roboto,
+      Oxygen,
+      Ubuntu,
+      Cantarell,
+      "Open Sans",
+      "Helvetica Neue",
+      sans-serif;
+  }
+
+  p {
+    font-size: 0.875rem;
+    line-height: 1.5;
+    color: var(--color-text-muted);
+    text-wrap: pretty;
+  }
+
+  .print {
+    display: none !important;
+  }
+
+  #hotkeypad [data-backdrop] {
+    background-color: rgb(39 39 42) !important;
+    opacity: 0.8 !important;
+  }
+
+  @media print {
+    .no-print {
+      display: none !important;
+    }
+
+    .print {
+      display: block !important;
+    }
+
+    astro-dev-toolbar {
+      display: none !important;
+    }
+
+    article {
+      break-inside: avoid;
+    }
+  }
+}
+
 /*
  * Tailwind CSS 4 - Dynamic Theme System
  * Using @theme inline for runtime CSS variable resolution
