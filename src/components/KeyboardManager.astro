@@ -157,15 +157,13 @@ const profilesInfo = profiles.map(({ network, url }) => {
 	}
 
 	footer {
-		background-color: transparent;
+		background-color: var(--color-button-accent);
 		position: fixed;
 		bottom: 0px;
 		width: 100%;
-		padding-block: 4px;
+		padding-block: 8px;
 		text-align: center;
-		font-size: 0.7rem;
-		opacity: 0.35;
-		transition: opacity 0.2s ease;
+		font-size: 0.85rem;
 
 		view-timeline-name: --revealing;
 		view-timeline-axis: block;
@@ -175,15 +173,11 @@ const profilesInfo = profiles.map(({ network, url }) => {
 		animation-range: entry 100% cover 10%;
 	}
 
-	footer:hover {
-		opacity: 0.7;
-	}
-
 	kbd {
 		background-color: var(--color-muted);
-		border-radius: 3px;
-		padding: 1px 3px;
-		font-size: 0.65rem;
+		border-radius: 4px;
+		padding: 2px 4px;
+		font-size: 12px;
 	}
 
 	#hotkeypad {
