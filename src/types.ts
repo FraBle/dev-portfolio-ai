@@ -1,3 +1,5 @@
+import type { ImageMetadata } from "astro";
+
 export interface NavItem {
   name: string;
   url: string;
@@ -51,7 +53,7 @@ export interface LocationInfo {
 export interface HeroProps {
   name: string;
   label: string;
-  image: string;
+  image: ImageMetadata | string;
   email?: string;
   phone?: string;
   location?: LocationInfo;

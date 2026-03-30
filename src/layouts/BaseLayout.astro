@@ -44,6 +44,8 @@ const ogImage = config.openGraph?.image ? new URL(config.openGraph.image, siteUr
 		<meta name="twitter:image" content={ogImage} />
 		{config.twitter?.creator && <meta name="twitter:creator" content={config.twitter.creator} />}
 
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Itim" />
 
 		{config.socialProfiles?.map((url) => (

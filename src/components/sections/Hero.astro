@@ -1,6 +1,7 @@
 ---
 import type { HeroProps, ProfileItem, SocialIcon } from "../../types";
 import Section from "../Section.astro";
+import { Image } from "astro:assets";
 import Mail from "../../icons/Mail.astro";
 import Phone from "../../icons/Phone.astro";
 import WorldMap from "../../icons/WorldMap.astro";
@@ -96,7 +97,11 @@ const printInfo = [email, phone, linkedUrl].filter(Boolean).join(" • ");
 			</footer>
 		</div>
 		<figure class="print:hidden w-fit relative">
-			<img class="shadow-lg shadow-skin-hues" src={image} alt={name} />
+			{typeof image === "string" ? (
+				<img class="shadow-lg shadow-skin-hues" src={image} alt={name} loading="eager" fetchpriority="high" />
+			) : (
+				<Image class="shadow-lg shadow-skin-hues" src={image} alt={name} width={256} height={256} loading="eager" fetchpriority="high" />
+			)}
 			<div class="pointer-events-none absolute -inset-2">
 				<div class="absolute -inset-y-8 right-0 w-px bg-skin-hue/50 [mask-image:linear-gradient(to_top,transparent,white_4rem,white_calc(100%-4rem),transparent)]"></div>
 				<div class="absolute -inset-y-8 left-0 w-px bg-skin-hue/50 [mask-image:linear-gradient(to_top,transparent,white_4rem,white_calc(100%-4rem),transparent)]"></div>
