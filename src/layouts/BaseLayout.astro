@@ -26,7 +26,6 @@ const ogImage = config.openGraph?.image ? new URL(config.openGraph.image, siteUr
 		<meta name="viewport" content="width=device-width" />
 		{noindex && <meta name="robots" content="noindex, nofollow" />}
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		{config.openGraph?.image && <link rel="preload" as="image" href={config.openGraph.image} />}
 
 		<meta property="og:url" content={siteUrl} />
 		<meta property="og:type" content={config.openGraph?.type || "website"} />
